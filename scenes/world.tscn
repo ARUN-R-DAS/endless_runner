@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxyihatouo6t5"]
+
+[ext_resource type="PackedScene" uid="uid://cdoxmcs2yc0v8" path="res://scenes/player.tscn" id="1_nnsk1"]
+[ext_resource type="Script" uid="uid://ct47h31g5oycn" path="res://scenes/world.gd" id="1_rwgxs"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_rwgxs")
+
+[node name="player" parent="." instance=ExtResource("1_nnsk1")]
+position = Vector2(19, -2)
+
+[node name="segments" type="Node2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 31)
+
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(398, 31)
+
+[node name="Button" type="Button" parent="."]
+visible = false
+offset_left = -51.0
+offset_top = -102.0
+offset_right = 52.0
+offset_bottom = -71.0
+disabled = true
+text = "TRY AGAIN ?"

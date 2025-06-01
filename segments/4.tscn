@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c80vo6ilbi2hi"]
+
+[node name="1" type="StaticBody2D"]
+collision_mask = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, 24, 60, 18, 114, 21, 196, 4, 202, 29, 202, 42, 0, 41)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(48, -48)
+polygon = PackedVector2Array(0, 24, 60, 18, 114, 21, 232, 1, 348, 1, 240, 23, 0, 41)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="."]
+position = Vector2(253, 1)
+polygon = PackedVector2Array(0, 24, 60, 18, 114, 21, 140, 9, 140, 41, 0, 41)

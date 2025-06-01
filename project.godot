@@ -11,5 +11,19 @@ config_version=5
 [application]
 
 config/name="endless_runner"
+run/main_scene="uid://dxyihatouo6t5"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+global="*res://global.gd"
+
+[layer_names]
+
+2d_physics/layer_1="ground"
+2d_physics/layer_2="player"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
