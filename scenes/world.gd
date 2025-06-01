@@ -10,8 +10,9 @@ var segments = [
 	preload("res://segments/4.tscn")
 ]
 
-var speed = 200
+var speed = 100
 var first_seg = true
+var second_seg = false
 var inst
 
 func _ready() -> void:
@@ -36,6 +37,10 @@ func spawn_inst(x,y):
 	if first_seg:
 		inst = segments[0].instantiate()
 		first_seg = false
+		second_seg = true
+	elif second_seg:
+		inst = segments[-4].instantiate()
+		second_seg = false
 	else:
 		inst = segments[randi() % segments.size()].instantiate()
 	inst.position = Vector2(x,y)

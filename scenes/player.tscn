@@ -81,7 +81,10 @@ collision_layer = 2
 script = ExtResource("1_qhqgy")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
 texture_filter = 1
+position = Vector2(1, 4)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_3v2ag")
 animation = &"walk"
 autoplay = "walk"

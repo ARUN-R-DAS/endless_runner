@@ -18,11 +18,11 @@ func controls():
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity.y -= 200
-		if Input.is_action_pressed("ui_left"):
-			velocity.x = -100
-		elif Input.is_action_pressed("ui_right"):
-			velocity.x = 50
-		else:
+	if Input.is_action_pressed("ui_left"):
+		velocity.x = -80
+	elif Input.is_action_pressed("ui_right"):
+		velocity.x = 50
+	else:
 			velocity.x = 0
 #------------------------------------------------------------------------------------------------------
 func game_over():

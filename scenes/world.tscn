@@ -1,10 +1,37 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxyihatouo6t5"]
+[gd_scene load_steps=6 format=3 uid="uid://dxyihatouo6t5"]
 
 [ext_resource type="PackedScene" uid="uid://cdoxmcs2yc0v8" path="res://scenes/player.tscn" id="1_nnsk1"]
 [ext_resource type="Script" uid="uid://ct47h31g5oycn" path="res://scenes/world.gd" id="1_rwgxs"]
+[ext_resource type="Script" uid="uid://4yj41bajuswd" path="res://scenes/parallax_2d.gd" id="2_k0juu"]
+[ext_resource type="Texture2D" uid="uid://c4s68xhhawijf" path="res://Assets/seaport-tileset-32x32-pixel-art-for-platformer/3 Background/Day/Background.png" id="3_4wyf3"]
+[ext_resource type="Texture2D" uid="uid://1xrgvl7jak0m" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="4_71j4m"]
 
 [node name="world" type="Node2D"]
 script = ExtResource("1_rwgxs")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+repeat_size = Vector2(566, 0)
+screen_offset = Vector2(100, 0)
+script = ExtResource("2_k0juu")
+scroll_speed = Vector2(100, 0)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Parallax2D"]
+motion_mirroring = Vector2(566, 0)
+
+[node name="Background" type="Sprite2D" parent="Parallax2D/ParallaxLayer"]
+visible = false
+position = Vector2(0, -216)
+texture = ExtResource("3_4wyf3")
+centered = false
+offset = Vector2(283, 0)
+
+[node name="Background2" type="Sprite2D" parent="Parallax2D/ParallaxLayer"]
+modulate = Color(0.338543, 0.201221, 0.151539, 1)
+position = Vector2(-56.0104, -216)
+scale = Vector2(1.19792, 1.33088)
+texture = ExtResource("4_71j4m")
+centered = false
+offset = Vector2(283, 0)
 
 [node name="player" parent="." instance=ExtResource("1_nnsk1")]
 position = Vector2(19, -2)
@@ -12,7 +39,7 @@ position = Vector2(19, -2)
 [node name="segments" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 31)
