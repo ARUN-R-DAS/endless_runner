@@ -39,7 +39,7 @@ func spawn_inst(x,y):
 		first_seg = false
 		second_seg = true
 	elif second_seg:
-		inst = segments[-4].instantiate()
+		inst = segments[-2].instantiate()
 		second_seg = false
 	else:
 		inst = segments[randi() % segments.size()].instantiate()

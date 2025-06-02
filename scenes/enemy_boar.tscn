@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://ichtimw5e0dh"]
+
+[ext_resource type="Script" uid="uid://bnfwhwg8vffi" path="res://scenes/enemy_boar.gd" id="1_56507"]
+[ext_resource type="Texture2D" uid="uid://b1y1kc2f0jg2y" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Boar/Walk/Walk-Base-Sheet-White.png" id="1_d00bb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56507"]
+atlas = ExtResource("1_d00bb")
+region = Rect2(0, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_073tk"]
+atlas = ExtResource("1_d00bb")
+region = Rect2(48, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3m7br"]
+atlas = ExtResource("1_d00bb")
+region = Rect2(96, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvkdi"]
+atlas = ExtResource("1_d00bb")
+region = Rect2(144, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5yh35"]
+atlas = ExtResource("1_d00bb")
+region = Rect2(192, 0, 48, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myee7"]
+atlas = ExtResource("1_d00bb")
+region = Rect2(240, 0, 48, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuur3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56507")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_073tk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3m7br")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvkdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5yh35")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myee7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2wbu"]
+radius = 9.0
+
+[node name="boar" type="CharacterBody2D"]
+script = ExtResource("1_56507")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nuur3")
+autoplay = "default"
+frame_progress = 0.835165
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_o2wbu")
