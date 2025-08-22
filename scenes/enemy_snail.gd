@@ -25,4 +25,8 @@ func delete_when_off_screen():
 		#global.is_game_over = true
 		print("snail removed from world")
 		queue_free()
-	
+#---------------------------------------------------------------------------------------------------------
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	var player = body
+	body.velocity.y = -300
+	body.velocity.x = -200

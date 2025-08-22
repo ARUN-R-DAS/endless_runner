@@ -1,7 +1,9 @@
 extends CharacterBody2D
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
+
 
 func _ready() -> void:
-	pass
+	global.player = self
 
 func _physics_process(delta: float) -> void:
 	gravity()
@@ -31,4 +33,3 @@ func game_over():
 		global.is_game_over = true
 		print("gameover from player")
 		queue_free()
-	

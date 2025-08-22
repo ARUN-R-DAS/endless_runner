@@ -1,0 +1,93 @@
+[gd_scene load_steps=14 format=3 uid="uid://c44udwgc8jr1w"]
+
+[ext_resource type="Script" uid="uid://dq7hg4ct6o8cg" path="res://scenes/enemy_bee.gd" id="1_hk7vv"]
+[ext_resource type="Texture2D" uid="uid://d0ko8pt0cpwnd" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Attack/Attack-Sheet.png" id="2_acis7"]
+[ext_resource type="Texture2D" uid="uid://bkil8f6e3mmx2" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Fly/Fly-Sheet.png" id="3_7fkks"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxv5s"]
+atlas = ExtResource("2_acis7")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gssru"]
+atlas = ExtResource("2_acis7")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0jvm"]
+atlas = ExtResource("2_acis7")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij5fs"]
+atlas = ExtResource("2_acis7")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6r1gm"]
+atlas = ExtResource("3_7fkks")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1hcj"]
+atlas = ExtResource("3_7fkks")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8rts1"]
+atlas = ExtResource("3_7fkks")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nu5c3"]
+atlas = ExtResource("3_7fkks")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuur3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxv5s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gssru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i0jvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij5fs")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6r1gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1hcj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8rts1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nu5c3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o2wbu"]
+radius = 9.0
+
+[node name="bee" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_hk7vv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nuur3")
+animation = &"attack"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_o2wbu")

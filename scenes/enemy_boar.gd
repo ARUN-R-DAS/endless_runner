@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+@onready var area: Area2D = $Area2D
+
 func _ready() -> void:
 	print('boar spawned in world')
 	pass
@@ -25,4 +27,11 @@ func delete_when_off_screen():
 		#global.is_game_over = true
 		print("boar removed from world")
 		queue_free()
-	
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	var player = body
+	body.velocity.y = -300
+	body.velocity.x = -200
+	body.anim.play('hurt')
+	await get_tree().create_timer(.5).timeout
+	body.anim.play('walk')

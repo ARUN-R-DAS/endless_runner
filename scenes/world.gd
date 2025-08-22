@@ -7,7 +7,8 @@ var segments = [
 	preload("res://segments/1.tscn"),
 	preload("res://segments/2.tscn"),
 	preload("res://segments/3.tscn"),
-	preload("res://segments/4.tscn")
+	preload("res://segments/4.tscn"),
+	preload("res://segments/5.tscn")
 ]
 
 var speed = 100
@@ -39,7 +40,7 @@ func spawn_inst(x,y):
 		first_seg = false
 		second_seg = true
 	elif second_seg:
-		inst = segments[-2].instantiate()
+		inst = segments[-1].instantiate()
 		second_seg = false
 	else:
 		inst = segments[randi() % segments.size()].instantiate()

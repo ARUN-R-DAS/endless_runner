@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca6f53j2til7l"]
+[gd_scene load_steps=14 format=3 uid="uid://ca6f53j2til7l"]
 
 [ext_resource type="Script" uid="uid://dobou65u0yv2k" path="res://scenes/enemy_snail.gd" id="1_85pkq"]
 [ext_resource type="Texture2D" uid="uid://dlv5gj5r55lwj" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Snail/walk-Sheet.png" id="2_nfn8v"]
@@ -70,6 +70,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2wbu"]
 radius = 9.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_85pkq"]
+size = Vector2(23, 17)
+
 [node name="snail" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_85pkq")
@@ -82,3 +85,13 @@ frame_progress = 0.775429
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_o2wbu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_85pkq")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
