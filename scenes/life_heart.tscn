@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://nymgm806xc1d"]
+
+[ext_resource type="Texture2D" uid="uid://2usthfikf6ox" path="res://Assets/speen.png" id="1_f3axl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfnet"]
+atlas = ExtResource("1_f3axl")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7141"]
+atlas = ExtResource("1_f3axl")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mrxx"]
+atlas = ExtResource("1_f3axl")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r4gi"]
+atlas = ExtResource("1_f3axl")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7kh3"]
+atlas = ExtResource("1_f3axl")
+region = Rect2(0, 64, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3hyu"]
+atlas = ExtResource("1_f3axl")
+region = Rect2(0, 80, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q5onr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfnet")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7141")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mrxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7r4gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7kh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3hyu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(13, 0)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_q5onr")

@@ -30,3 +30,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	var player = body
 	body.velocity.y = -300
 	body.velocity.x = -200
+	body.hurt()

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-
+var health = 4
+signal player_hurt
 
 func _ready() -> void:
 	global.player = self
@@ -32,4 +33,26 @@ func game_over():
 	if global_position.y > 400:
 		global.is_game_over = true
 		print("gameover from player")
-		queue_free()
+
+#------------------------------------------------------------------------------------------
+func hurt():
+	health -= 1
+	anim.play("hurt")
+	emit_signal("player_hurt",health)
+	await get_tree().create_timer(0.5).timeout
+	anim.play("walk")
+	
+	if health <=0:
+		die()
+#---------------------------------------------------------------------------------------
+func die():
+	if global.is_game_over:
+		return
+	global.is_game_over = true
+	print("player died")
+	
+	var dummy_scene = preload("res://scenes/DummyPlayer.tscn")
+	var dummy = dummy_scene.instantiate()
+	get_parent().add_child(dummy)
+	dummy.global_position = global_position
+	queue_free()

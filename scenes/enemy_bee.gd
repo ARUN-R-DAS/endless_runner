@@ -23,7 +23,8 @@ func _physics_process(delta):
 	#print(direction)
 	velocity.x = direction.x * speed
 	velocity.y = direction.y * speed
-	move_and_slide()
+	if is_instance_valid(player):
+		move_and_slide()
 	flip(velocity)
 	get_distance_and_orbit(delta)
 #---------------------------------
@@ -55,3 +56,8 @@ func get_distance_and_orbit(delta):
 			anim.play("attack")
 
 #---------------------------------
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	var player = body
+	body.velocity.y = -300
+	body.velocity.x = -200
+	body.hurt()

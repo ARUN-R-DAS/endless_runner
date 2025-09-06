@@ -32,6 +32,4 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	var player = body
 	body.velocity.y = -300
 	body.velocity.x = -200
-	body.anim.play('hurt')
-	await get_tree().create_timer(.5).timeout
-	body.anim.play('walk')
+	body.hurt()

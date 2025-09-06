@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c44udwgc8jr1w"]
+[gd_scene load_steps=15 format=3 uid="uid://c44udwgc8jr1w"]
 
 [ext_resource type="Script" uid="uid://dq7hg4ct6o8cg" path="res://scenes/enemy_bee.gd" id="1_hk7vv"]
 [ext_resource type="Texture2D" uid="uid://d0ko8pt0cpwnd" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Mob/Small Bee/Attack/Attack-Sheet.png" id="2_acis7"]
@@ -76,6 +76,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_o2wbu"]
 radius = 9.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hk7vv"]
+size = Vector2(12, 8)
+
 [node name="bee" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(0.5, 0.5)
@@ -89,5 +92,15 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 7)
+position = Vector2(0, -1)
 shape = SubResource("CircleShape2D_o2wbu")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 8)
+shape = SubResource("RectangleShape2D_hk7vv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

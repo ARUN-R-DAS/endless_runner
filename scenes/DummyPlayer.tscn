@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://67uddkggvlxk"]
+
+[ext_resource type="Texture2D" uid="uid://bmiayxxauu4tu" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Death.png" id="1_dnxve"]
+[ext_resource type="Script" uid="uid://dmhgphhdo2tw4" path="res://scripts/dummy_player.gd" id="1_k7kqh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7kqh"]
+atlas = ExtResource("1_dnxve")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h1m5p"]
+atlas = ExtResource("1_dnxve")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_va3u7"]
+atlas = ExtResource("1_dnxve")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo75j"]
+atlas = ExtResource("1_dnxve")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2iiab"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7kqh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h1m5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_va3u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo75j")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="RigidBody2D" type="RigidBody2D"]
+z_index = 5
+script = ExtResource("1_k7kqh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2iiab")
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
