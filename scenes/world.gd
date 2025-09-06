@@ -37,7 +37,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	chunk_loading(delta)
 	game_over()
-	restart_game()
+	#restart_game()
 	
 #functions-----------------------------------------
 func chunk_loading(delta):
@@ -65,13 +65,32 @@ func game_over():
 		print("gameover from world")
 		global.is_game_over = false
 		speed = 0
-		button.disabled = false
-		button.visible = true
+
+		# Create CanvasLayer for fade overlay
+		var layer = CanvasLayer.new()
+		add_child(layer)
+
+		var fade = ColorRect.new()
+		fade.color = Color(0, 0, 0, 0)  # start transparent
+		fade.anchor_left = 0
+		fade.anchor_top = 0
+		fade.anchor_right = 1
+		fade.anchor_bottom = 1
+		fade.offset_left = 0
+		fade.offset_top = 0
+		fade.offset_right = 0
+		fade.offset_bottom = 0
+		layer.add_child(fade)
+
+		# Tween alpha to 1 (fade to black)
+		var tween = create_tween()
+		tween.tween_property(fade, "color:a", 1.0, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		tween.tween_callback(Callable(self, "_change_to_death_scene"))
+
 #------------------------------------------------------------------------------------------------
-func restart_game():
-	if button.button_pressed:
-		print("button_pressed")
-		get_tree().reload_current_scene()
+func _change_to_death_scene():
+	global.last_score = score
+	get_tree().change_scene_to_file("res://scenes/death_scene.tscn")
 #-------------------------------------------------------------------------------------------
 func _on_player_hurt(current_health: int):
 	update_hearts(current_health)
@@ -101,6 +120,6 @@ func blink_and_remove(heart: Node):
 func _on_score_timer_timeout() -> void:
 	if is_instance_valid(player):
 		score += 1
-		label.text = "Score:" + str(score)
+		label.text = "Score: " + str(score)
 	else:
-		label.text = "You scored:" + str(score)
+		label.text = "You scored: " + str(score)

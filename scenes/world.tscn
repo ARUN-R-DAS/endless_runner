@@ -49,15 +49,6 @@ position = Vector2(0, 31)
 [node name="Marker2D2" type="Marker2D" parent="."]
 position = Vector2(398, 31)
 
-[node name="Button" type="Button" parent="."]
-visible = false
-offset_left = -51.0
-offset_top = -102.0
-offset_right = 52.0
-offset_bottom = -71.0
-disabled = true
-text = "TRY AGAIN ?"
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -75,7 +66,7 @@ offset_left = -176.0
 offset_top = -101.0
 offset_right = -125.0
 offset_bottom = -78.0
-text = "score: "
+text = "Score: 0"
 
 [node name="score_timer" type="Timer" parent="."]
 autostart = true

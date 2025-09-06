@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://cbrqyyaq524iq"]
+
+[ext_resource type="Script" uid="uid://x2h8wl1lluh1" path="res://scripts/death_scene.gd" id="1_dkhfj"]
+[ext_resource type="Texture2D" uid="uid://dqnljw43nnwd" path="res://Assets/spotlight_death.png" id="1_vcjmr"]
+[ext_resource type="Texture2D" uid="uid://8ow7ldlgs3pm" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Hurt.png" id="2_dkhfj"]
+[ext_resource type="Texture2D" uid="uid://bmiayxxauu4tu" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Death.png" id="3_mr0a8"]
+
+[sub_resource type="Texture2DRD" id="Texture2DRD_dkhfj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f78ek"]
+atlas = ExtResource("2_dkhfj")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ufsib"]
+atlas = ExtResource("2_dkhfj")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_skiwu"]
+atlas = ExtResource("3_mr0a8")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_taitq"]
+atlas = ExtResource("3_mr0a8")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4vw8"]
+atlas = ExtResource("3_mr0a8")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dq6rb"]
+atlas = ExtResource("3_mr0a8")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_25cbj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f78ek")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ufsib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_skiwu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_taitq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4vw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dq6rb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_dkhfj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 340.0
+offset_top = 174.0
+offset_right = 381.0
+offset_bottom = 221.0
+scale = Vector2(-577.217, -20.1924)
+texture = SubResource("Texture2DRD_dkhfj")
+
+[node name="bottom_spotlight" type="Sprite2D" parent="."]
+position = Vector2(1, -9)
+scale = Vector2(1.34016, 1.1239)
+texture = ExtResource("1_vcjmr")
+region_enabled = true
+region_rect = Rect2(0, 0, 100, 99)
+
+[node name="player_anim" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -6)
+sprite_frames = SubResource("SpriteFrames_25cbj")
+autoplay = "default"
+frame = 5
+frame_progress = 1.0
+
+[node name="top_spotlight" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+scale = Vector2(1.3272, 1.1358)
+texture = ExtResource("1_vcjmr")
+region_enabled = true
+region_rect = Rect2(15.5, 113, 68, 74)
+
+[node name="Button" type="Button" parent="."]
+offset_left = -45.0
+offset_top = 33.0
+offset_right = 43.0
+offset_bottom = 64.0
+text = "Retry"
+
+[node name="score_label" type="Label" parent="."]
+offset_left = -50.0
+offset_top = -54.0
+offset_right = 51.0
+offset_bottom = -31.0
+text = "Your Score: 0"
+horizontal_alignment = 1

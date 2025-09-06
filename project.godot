@@ -11,9 +11,9 @@ config_version=5
 [application]
 
 config/name="endless_runner"
-run/main_scene="uid://dxyihatouo6t5"
+run/main_scene="uid://db1k3rimvrrhm"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://gyf3w4vy40dm"
 
 [autoload]
 
