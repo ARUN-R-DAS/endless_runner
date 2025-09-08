@@ -1,10 +1,12 @@
 extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
-var health = 3
+var health: int
 signal player_hurt
 
 func _ready() -> void:
 	global.player = self
+	health = 3
+	global.is_game_over = false
 
 func _physics_process(delta: float) -> void:
 	gravity()

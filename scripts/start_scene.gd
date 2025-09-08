@@ -62,7 +62,11 @@ func _on_start_pressed():
 
 
 	var tween = create_tween()
+	# Fade effect
 	tween.tween_property(fade, "color:a", 1.0, 4).set_trans(Tween.TRANS_SINE)
+	# Run camera zoom in parallel
+	tween.parallel().tween_property($Camera2D, "zoom", Vector2(15, 15),4).set_trans(Tween.TRANS_SINE)
+	
 	tween.tween_callback(Callable(self, "_start_game_after_fade"))
 	
 func _start_game_after_fade():
