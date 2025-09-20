@@ -23,6 +23,8 @@ const heart_scene = preload("res://scenes/life_heart.tscn")
 # --- Score
 var score: int
 @onready var label: Label = $CanvasLayer/Label
+#---- bg music
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -33,7 +35,7 @@ func _ready() -> void:
 	player.connect("player_hurt",Callable(self,"_on_player_hurt"))
 	update_hearts(player.health)
 	score = 0
-
+	play_bg_music()
 func _physics_process(delta: float) -> void:
 	chunk_loading(delta)
 	game_over()
@@ -123,3 +125,8 @@ func _on_score_timer_timeout() -> void:
 		label.text = "Score: " + str(score)
 	else:
 		label.text = "You scored: " + str(score)
+#------------------------------------------------------------------------------------------
+func play_bg_music():
+	audio_stream_player.stream = preload("res://music/Sakura-Girl-Daisy-chosic.com_.mp3")
+	audio_stream_player.stream.loop = true
+	audio_stream_player.play()

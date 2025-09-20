@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=4 uid="uid://db1k3rimvrrhm"]
+[gd_scene load_steps=14 format=4 uid="uid://db1k3rimvrrhm"]
 
 [ext_resource type="Texture2D" uid="uid://cr35aw2dpdfgv" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_3tgnh"]
 [ext_resource type="Script" uid="uid://csoidkrrje34g" path="res://scripts/start_scene.gd" id="1_u7rsi"]
 [ext_resource type="Texture2D" uid="uid://ecjlu7s88373" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Idle.png" id="2_u7rsi"]
+[ext_resource type="FontFile" uid="uid://cp4341jk3waj0" path="res://fonts/upheaval/upheavtt.ttf" id="4_i331m"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_3tgnh"]
 
@@ -513,7 +514,7 @@ animations = [{
 }]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3tgnh"]
-font_size = 8
+font_size = 20
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u7rsi")
@@ -549,17 +550,22 @@ zoom = Vector2(3, 3)
 position_smoothing_enabled = true
 
 [node name="Button" type="Button" parent="."]
-offset_left = -23.0
+offset_left = -33.0
 offset_top = 16.0
-offset_right = 23.0
+offset_right = 33.0
 offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("4_i331m")
+theme_override_font_sizes/font_size = 20
 text = "Start"
 metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
-offset_left = 115.0
-offset_top = 91.0
-offset_right = 241.0
-offset_bottom = 114.0
+offset_left = 97.0
+offset_top = 94.0
+offset_right = 280.0
+offset_bottom = 112.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("4_i331m")
+theme_override_font_sizes/font_size = 20
 text = "Developed by RUN"
 label_settings = SubResource("LabelSettings_3tgnh")

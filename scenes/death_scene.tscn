@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbrqyyaq524iq"]
+[gd_scene load_steps=14 format=3 uid="uid://cbrqyyaq524iq"]
 
 [ext_resource type="Script" uid="uid://x2h8wl1lluh1" path="res://scripts/death_scene.gd" id="1_dkhfj"]
 [ext_resource type="Texture2D" uid="uid://dqnljw43nnwd" path="res://Assets/spotlight_death.png" id="1_vcjmr"]
 [ext_resource type="Texture2D" uid="uid://8ow7ldlgs3pm" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Hurt.png" id="2_dkhfj"]
 [ext_resource type="Texture2D" uid="uid://bmiayxxauu4tu" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Death.png" id="3_mr0a8"]
+[ext_resource type="FontFile" uid="uid://cp4341jk3waj0" path="res://fonts/upheaval/upheavtt.ttf" id="5_mr0a8"]
 
 [sub_resource type="Texture2DRD" id="Texture2DRD_dkhfj"]
 
@@ -99,12 +100,16 @@ offset_left = -45.0
 offset_top = 33.0
 offset_right = 43.0
 offset_bottom = 64.0
+theme_override_fonts/font = ExtResource("5_mr0a8")
+theme_override_font_sizes/font_size = 20
 text = "Retry"
 
 [node name="score_label" type="Label" parent="."]
-offset_left = -50.0
+offset_left = -69.0
 offset_top = -54.0
-offset_right = 51.0
+offset_right = 70.0
 offset_bottom = -31.0
+theme_override_fonts/font = ExtResource("5_mr0a8")
+theme_override_font_sizes/font_size = 20
 text = "Your Score: 0"
 horizontal_alignment = 1

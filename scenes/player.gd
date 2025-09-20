@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 var health: int
 signal player_hurt
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready() -> void:
 	global.player = self
@@ -23,6 +24,8 @@ func controls():
 	if is_on_floor():
 		if Input.is_action_just_pressed("ui_accept"):
 			velocity.y -= 220
+			audio_stream_player.stream = preload("res://music/jump_c_02-102843.mp3")
+			audio_stream_player.play()
 	if Input.is_action_pressed("ui_left"):
 		velocity.x = -80
 	elif Input.is_action_pressed("ui_right"):
@@ -43,7 +46,8 @@ func hurt():
 	emit_signal("player_hurt",health)
 	await get_tree().create_timer(0.5).timeout
 	anim.play("walk")
-	
+	audio_stream_player.stream = preload("res://music/jump-climb-or-damage-sound-f-95942.mp3")
+	audio_stream_player.play()
 	if health <=0:
 		die()
 #---------------------------------------------------------------------------------------
