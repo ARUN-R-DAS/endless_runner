@@ -10,8 +10,12 @@ var flicker_rng = RandomNumberGenerator.new()
 const WORLD = preload("res://scenes/world.tscn")
 # ---- display the score
 @onready var score_label: Label = $score_label
+# ---- bg music -----
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+const EGGY_TOAST___INTRO = preload("res://music/Eggy Toast - Intro.mp3")
 
 func _ready():
+	bg_music()
 	score_label.text = "Your Score: " + str(global.last_score)
 	retry_button.connect("pressed", Callable(self,"_on_retry_pressed"))
 	# Initial states
@@ -20,7 +24,6 @@ func _ready():
 	retry_button.visible = false
 
 	spotlight_intro()
-
 
 # --- Spotlight intro ---
 func spotlight_intro():
@@ -89,6 +92,8 @@ func flicker_once():
 	tween.tween_callback(Callable(self, "flicker_once"))
 
 func _on_retry_pressed():
+	audio_stream_player.stream = preload("res://music/button_press.wav")
+	audio_stream_player.play()
 	var layer =  CanvasLayer.new()
 	add_child(layer)
 	var fade = ColorRect.new()
@@ -114,3 +119,9 @@ func _on_retry_pressed():
 	
 func _start_game_after_fade():
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
+
+func bg_music():
+	audio_stream_player.stream = EGGY_TOAST___INTRO
+	audio_stream_player.stream.loop = true
+	audio_stream_player.play()
+	

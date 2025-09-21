@@ -4,11 +4,15 @@ extends Node2D
 
 
 var segments = [
+	preload("res://segments/0.tscn"),
 	preload("res://segments/1.tscn"),
 	preload("res://segments/2.tscn"),
 	preload("res://segments/3.tscn"),
 	preload("res://segments/4.tscn"),
-	preload("res://segments/5.tscn")
+	preload("res://segments/5.tscn"),
+	preload("res://segments/6.tscn"),
+	preload("res://segments/7.tscn"),
+	preload("res://segments/8.tscn")
 ]
 
 var speed = 100
@@ -25,7 +29,10 @@ var score: int
 @onready var label: Label = $CanvasLayer/Label
 #---- bg music
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
-
+# --- bg image getting red over time ----
+@onready var background_2: Sprite2D = $Parallax2D/ParallaxLayer/Background2
+var dark_speed = 0.005
+var red_speed = 0.005
 
 func _ready() -> void:
 	randomize()
@@ -37,8 +44,11 @@ func _ready() -> void:
 	score = 0
 	play_bg_music()
 func _physics_process(delta: float) -> void:
+	darken_the_background(delta)
 	chunk_loading(delta)
 	game_over()
+	if player:
+		update_hearts(player.health)
 	#restart_game()
 	
 #functions-----------------------------------------
@@ -87,6 +97,14 @@ func game_over():
 		# Tween alpha to 1 (fade to black)
 		var tween = create_tween()
 		tween.tween_property(fade, "color:a", 1.0, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+		# --- Audio fade (parallel) ---
+		tween.parallel().tween_property(audio_stream_player, "volume_db", -80.0, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+		# --- Optional: distortion effect (parallel) ---
+		var distortion = AudioServer.get_bus_effect(1, 0) as AudioEffectDistortion
+		if distortion:
+			tween.parallel().tween_property(distortion, "pre_gain_db", 24.0, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
 		tween.tween_callback(Callable(self, "_change_to_death_scene"))
 
 #------------------------------------------------------------------------------------------------
@@ -122,11 +140,21 @@ func blink_and_remove(heart: Node):
 func _on_score_timer_timeout() -> void:
 	if is_instance_valid(player):
 		score += 1
+		speed += 1 # increase the game scrolling speed
+		audio_stream_player.pitch_scale += 0.005
 		label.text = "Score: " + str(score)
 	else:
 		label.text = "You scored: " + str(score)
 #------------------------------------------------------------------------------------------
 func play_bg_music():
-	audio_stream_player.stream = preload("res://music/Sakura-Girl-Daisy-chosic.com_.mp3")
+	audio_stream_player.stream = preload("res://music/2020-03-22_-_A_Bit_Of_Hope_-_David_Fesliyan.mp3")
 	audio_stream_player.stream.loop = true
 	audio_stream_player.play()
+#-----------------------------------------------------
+func darken_the_background(delta):
+	var c := background_2.modulate
+	# Darken (reduce brightness) and increase red gradually
+	c.r = clamp(c.r + red_speed * delta, 0, 1)   # add red
+	c.g = clamp(c.g - dark_speed * delta, 0, 1)  # remove green
+	c.b = clamp(c.b - dark_speed * delta, 0, 1)  # remove blue
+	background_2.modulate = c

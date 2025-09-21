@@ -23,7 +23,7 @@ texture = ExtResource("2_qq8q8")
 21:0/0 = 0
 22:0/0 = 0
 0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.22222, -8, 8, -8, 8, 8, -4.44444, 2.66667)
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.179857, -2.24823, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 2:1/0 = 0
@@ -488,7 +488,7 @@ physics_layer_0/collision_layer = 1
 physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_ay0ms")
 
-[node name="1" type="Node2D"]
+[node name="6" type="Node2D"]
 script = ExtResource("1_yeien")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -499,5 +499,7 @@ tile_set = SubResource("TileSet_yhut0")
 tile_map_data = PackedByteArray("AAACAAAAAAAQAA8AAAACAAEAAAAQABAAAAADAAAAAAARAA8AAAADAAEAAAARABAAAAAMAAEAAAAXABQAAAANAAEAAAAYABQAAAAUAP7/AAAWABEAAAAJAAEAAAAWABEAAAAWAP7/AAAQABEAAAA=")
 tile_set = SubResource("TileSet_yhut0")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(343, -50)
+[node name="spawn_markers" type="Node" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="spawn_markers"]
+position = Vector2(249, 3)

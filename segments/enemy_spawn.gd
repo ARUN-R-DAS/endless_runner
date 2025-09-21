@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var marker: Marker2D = $Marker2D
+@onready var spawn_markers: Node = $spawn_markers
 var inst
 
 var enemies = [
@@ -9,7 +9,8 @@ var enemies = [
 ] 
 
 func _ready() -> void:
-	spawn_inst(marker.position)
+	for marker in spawn_markers.get_children():
+		spawn_inst(marker.position)
 #------------------------------------------------------------------------------------------------------
 func spawn_inst(pos):
 	inst = enemies[randi() % enemies.size()].instantiate()

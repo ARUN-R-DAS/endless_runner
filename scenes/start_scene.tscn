@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=4 uid="uid://db1k3rimvrrhm"]
+[gd_scene load_steps=15 format=4 uid="uid://db1k3rimvrrhm"]
 
 [ext_resource type="Texture2D" uid="uid://cr35aw2dpdfgv" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Assets/Tiles.png" id="1_3tgnh"]
 [ext_resource type="Script" uid="uid://csoidkrrje34g" path="res://scripts/start_scene.gd" id="1_u7rsi"]
+[ext_resource type="Texture2D" uid="uid://1xrgvl7jak0m" path="res://Assets/Legacy-Fantasy - High Forest 2.0/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="2_0kdh5"]
 [ext_resource type="Texture2D" uid="uid://ecjlu7s88373" path="res://Assets/street-animal-pixel-art-asset-pack/3 Cat/Idle.png" id="2_u7rsi"]
 [ext_resource type="FontFile" uid="uid://cp4341jk3waj0" path="res://fonts/upheaval/upheavtt.ttf" id="4_i331m"]
 
@@ -519,8 +520,12 @@ font_size = 20
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_u7rsi")
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(15, 4)
+texture = ExtResource("2_0kdh5")
+
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 1)
+modulate = Color(0, 0, 0, 0.27451)
 offset_left = -206.0
 offset_top = -129.0
 offset_right = 234.0
@@ -569,3 +574,6 @@ theme_override_fonts/font = ExtResource("4_i331m")
 theme_override_font_sizes/font_size = 20
 text = "Developed by RUN"
 label_settings = SubResource("LabelSettings_3tgnh")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+autoplay = true

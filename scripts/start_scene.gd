@@ -3,8 +3,10 @@ extends Node2D
 @onready var start_button = $Button
 @onready var run_label = $Label
 @onready var bg_rect = $TextureRect  # ColorRect covering screen
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
 func _ready():
+	bg_music()
 	start_button.connect("pressed", Callable(self,"_on_start_pressed"))
 	animate_start_button()
 	animate_run_label()
@@ -36,12 +38,14 @@ func animate_sky():
 	var tween = create_tween().set_loops()
 
 	# Transition night → dawn → day → sunset → night
-	tween.tween_property(bg_rect, "modulate", Color(0.4, 0.3, 0.6, 1.0), 3.0) # dawn purple
-	tween.tween_property(bg_rect, "modulate", Color(0.7, 0.8, 1.0, 1.0), 4.0) # day sky
-	tween.tween_property(bg_rect, "modulate", Color(0.9, 0.5, 0.3, 1.0), 3.0) # sunset orange
-	tween.tween_property(bg_rect, "modulate", Color(0.1, 0.1, 0.3, 1.0), 4.0) # night blue
+	tween.tween_property(bg_rect, "modulate", Color(0.4, 0.3, 0.6, .6), 3.0) # dawn purple
+	tween.tween_property(bg_rect, "modulate", Color(0.7, 0.8, 1.0, .6), 4.0) # day sky
+	tween.tween_property(bg_rect, "modulate", Color(0.9, 0.5, 0.3, .6), 3.0) # sunset orange
+	tween.tween_property(bg_rect, "modulate", Color(0.1, 0.1, 0.3, .6), 4.0) # night blue
 
 func _on_start_pressed():
+	audio_stream_player.stream = preload("res://music/button_press.wav")
+	audio_stream_player.play()
 	var layer =  CanvasLayer.new()
 	add_child(layer)
 	var fade = ColorRect.new()
@@ -66,8 +70,13 @@ func _on_start_pressed():
 	tween.tween_property(fade, "color:a", 1.0, 4).set_trans(Tween.TRANS_SINE)
 	# Run camera zoom in parallel
 	tween.parallel().tween_property($Camera2D, "zoom", Vector2(15, 15),4).set_trans(Tween.TRANS_SINE)
-	
+	tween.parallel().tween_property($Camera2D, "position:y", -20,4).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(Callable(self, "_start_game_after_fade"))
 	
 func _start_game_after_fade():
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
+
+func bg_music():
+	audio_stream_player.stream = preload("res://music/Lenny Pixels - Strange Signal - 8bit.mp3")
+	audio_stream_player.stream.loop = true
+	audio_stream_player.play()
