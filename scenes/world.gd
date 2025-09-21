@@ -33,6 +33,8 @@ var score: int
 @onready var background_2: Sprite2D = $Parallax2D/ParallaxLayer/Background2
 var dark_speed = 0.005
 var red_speed = 0.005
+# --- fixing bug : fade only once
+var fade_started = false
 
 func _ready() -> void:
 	randomize()
@@ -54,7 +56,7 @@ func _physics_process(delta: float) -> void:
 #functions-----------------------------------------
 func chunk_loading(delta):
 	for segment in $segments.get_children():
-		segment.position.x -= speed*delta
+		segment.position.x -= speed * delta
 		if segment.position.x < -398*1.5:
 			spawn_inst(segment.position.x + 398*2,0)
 			segment.queue_free()
@@ -73,12 +75,15 @@ func spawn_inst(x,y):
 	$segments.add_child(inst)
 #------------------------------------------------------------------------------------------------------
 func game_over():
-	if global.is_game_over:
+	if global.is_game_over and not fade_started:
+		fade_started = true
 		print("gameover from world")
 		global.is_game_over = false
 		speed = 0
-
-		# Create CanvasLayer for fade overlay
+		start_fade()
+#-------------------------------------------------------------
+func start_fade():
+	# Create CanvasLayer for fade overlay
 		var layer = CanvasLayer.new()
 		add_child(layer)
 
@@ -106,7 +111,6 @@ func game_over():
 			tween.parallel().tween_property(distortion, "pre_gain_db", 24.0, 4.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 
 		tween.tween_callback(Callable(self, "_change_to_death_scene"))
-
 #------------------------------------------------------------------------------------------------
 func _change_to_death_scene():
 	global.last_score = score

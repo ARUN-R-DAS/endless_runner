@@ -118,6 +118,7 @@ func _on_retry_pressed():
 	tween.tween_callback(Callable(self, "_start_game_after_fade"))
 	
 func _start_game_after_fade():
+	kill_all_tweens()
 	get_tree().change_scene_to_file("res://scenes/world.tscn")
 
 func bg_music():
@@ -125,3 +126,6 @@ func bg_music():
 	audio_stream_player.stream.loop = true
 	audio_stream_player.play()
 	
+func kill_all_tweens():
+	for tween in get_tree().get_nodes_in_group("tweens"):
+		tween.kill()
